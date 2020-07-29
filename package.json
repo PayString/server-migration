@@ -19,8 +19,8 @@
     "build"
   ],
   "scripts": {
-    "build": "rm -rf build && tsc --project .",
-    "buildWatch": "tsc --watch --project .",
+    "build": "rm -rf build && tsc --esModuleInterop --project .",
+    "buildWatch": "tsc --esModuleInterop --watch --project .",
     "lint": "eslint . --ext .ts --fix --max-warnings 0 && prettier --write '**/*.{md,json}'",
     "lintNoFix": "eslint . --ext .ts --max-warnings 0 && prettier --check '**/*.{md,json}'",
     "lintWatch": "chokidar src/**/*.ts -c \"npm run lint\" --initial --verbose",
@@ -35,8 +35,11 @@
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
+    "@types/google-protobuf": "^3.7.2",
     "@xpring-eng/logger": "^1.0.0",
-    "typescript": "^3.9.5"
+    "axios": "^0.19.2",
+    "typescript": "^3.9.5",
+    "xpring-js": "^5.0.1"
   },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.2",
