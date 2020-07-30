@@ -15,7 +15,6 @@ const options = yargs.usage('Usage: -f <file>').option('f', {
 }).argv
 
 // eslint-disable-next-line node/no-sync -- Does not need to be async.
-// const text = fs.readFileSync('./build/test/test.txt', 'utf-8')
 const text = fs.readFileSync(options.file, 'utf-8')
 const payIds = text.split('\n').slice(0, -1)
 

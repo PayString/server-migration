@@ -21,19 +21,15 @@ export async function getAccount(
   payId: string,
   apiVersion: string,
 ): Promise<Account> {
-  let response
-  try {
-    response = await axios.request({
+  return (
+    await axios.request({
       url: `/users/${payId}`,
       method: 'get',
       baseURL: baseUrl,
       headers: { 'PayID-API-Version': apiVersion },
       responseType: 'json',
     })
-  } catch (error) {
-    logger.error(error.response.data)
-  }
-  return response?.data
+  ).data
 }
 
 /**
@@ -50,21 +46,17 @@ export async function putAccount(
   apiVersion: string,
   account: Account,
 ): Promise<void> {
-  try {
-    await axios.request({
-      url: `/users/${payId}`,
-      method: 'put',
-      baseURL: baseUrl,
-      headers: {
-        'PayID-API-Version': apiVersion,
-        'Content-Type': 'application/json',
-      },
-      data: account,
-      responseType: 'json',
-    })
-  } catch (error) {
-    logger.error(error.response.data)
-  }
+  await axios.request({
+    url: `/users/${payId}`,
+    method: 'put',
+    baseURL: baseUrl,
+    headers: {
+      'PayID-API-Version': apiVersion,
+      'Content-Type': 'application/json',
+    },
+    data: account,
+    responseType: 'json',
+  })
 }
 
 /**
@@ -82,14 +74,18 @@ export async function getAndPutWithTransform(
   apiVersion: string,
   tranformFn: (paymentInfo: PaymentInformation) => PaymentInformation,
 ): Promise<void> {
-  for (const payId of payIds) {
-    const oldAccount = await getAccount(baseUrl, payId, apiVersion)
+  try {
+    for (const payId of payIds) {
+      const oldAccount = await getAccount(baseUrl, payId, apiVersion)
 
-    const newAccount = {
-      payId,
-      addresses: oldAccount.addresses.map(tranformFn),
+      const newAccount = {
+        payId,
+        addresses: oldAccount.addresses.map(tranformFn),
+      }
+
+      await putAccount(baseUrl, payId, apiVersion, newAccount)
     }
-
-    await putAccount(baseUrl, payId, apiVersion, newAccount)
+  } catch (err) {
+    logger.error(err.response.data)
   }
 }
