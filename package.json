@@ -19,14 +19,13 @@
     "build"
   ],
   "scripts": {
-    "build": "rm -rf build && tsc --esModuleInterop --project .",
+    "build": "rm -rf build && tsc --esModuleInterop --project . && copyfiles ./test/test.txt build",
     "buildWatch": "tsc --esModuleInterop --watch --project .",
     "lint": "eslint . --ext .ts --fix --max-warnings 0 && prettier --write '**/*.{md,json}'",
     "lintNoFix": "eslint . --ext .ts --max-warnings 0 && prettier --check '**/*.{md,json}'",
     "lintWatch": "chokidar src/**/*.ts -c \"npm run lint\" --initial --verbose",
     "prepare": "npm run build",
     "prepublishOnly": "npm run lintNoFix && npm run test",
-    "prestart": "npm run build",
     "start": "node build/src/index.js",
     "startWatch": "tsc-watch --onSuccess 'npm run start'",
     "test": "nyc mocha 'test/**/*.test.ts'",
@@ -35,7 +34,6 @@
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
-    "@types/google-protobuf": "^3.7.2",
     "@xpring-eng/logger": "^1.0.0",
     "axios": "^0.19.2",
     "typescript": "^3.9.5",
@@ -45,6 +43,7 @@
     "@arkweid/lefthook": "^0.7.2",
     "@fintechstudios/eslint-plugin-chai-as-promised": "^3.0.2",
     "@types/chai": "^4.2.11",
+    "@types/google-protobuf": "^3.7.2",
     "@types/mocha": "^7.0.2",
     "@types/node": "^14.0.23",
     "@typescript-eslint/eslint-plugin": "^3.5.0",
@@ -53,6 +52,7 @@
     "chai": "^4.2.0",
     "chokidar": "^3.4.0",
     "chokidar-cli": "^2.1.0",
+    "copyfiles": "^2.3.0",
     "eslint": "^7.4.0",
     "eslint-plugin-array-func": "^3.1.6",
     "eslint-plugin-eslint-comments": "^3.2.0",
