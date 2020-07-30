@@ -18,6 +18,9 @@
   "files": [
     "build"
   ],
+  "bin": {
+    "migrate": "./bin/index.js"
+  },
   "scripts": {
     "build": "rm -rf build && tsc --esModuleInterop --project . && copyfiles ./test/test.txt build",
     "buildWatch": "tsc --esModuleInterop --watch --project .",
@@ -37,7 +40,8 @@
     "@xpring-eng/logger": "^1.0.0",
     "axios": "^0.19.2",
     "typescript": "^3.9.5",
-    "xpring-js": "^5.0.1"
+    "xpring-js": "^5.0.1",
+    "yargs": "^15.4.1"
   },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.2",
