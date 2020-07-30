@@ -19,7 +19,7 @@
     "build"
   ],
   "bin": {
-    "migrate": "./bin/index.js"
+    "payid-server-migrate": "./bin/index.js"
   },
   "scripts": {
     "build": "rm -rf build && tsc --esModuleInterop --project . && copyfiles ./test/test.txt build",

@@ -9,7 +9,7 @@ import { PaymentInformation } from './types'
  *
  * @returns A PaymentInformation object ( potentially transformed to use classic addresses ).
  */
-export default function transformXAddressToClassic(
+export default function xAddressToClassic(
   paymentInfo: PaymentInformation,
 ): PaymentInformation {
   const address = paymentInfo.details.address

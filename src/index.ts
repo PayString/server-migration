@@ -1,5 +1,5 @@
 import { getAccount, putAccount, getAndPutWithTransform } from './migration'
-import transformXAddressToClassic from './transform'
+import xAddressToClassic from './transform'
 
 export { getAccount, putAccount, getAndPutWithTransform }
-export { transformXAddressToClassic }
+export { xAddressToClassic }
