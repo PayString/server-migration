@@ -1,6 +1,6 @@
 {
   "name": "@payid-org/server-migration",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Helper library for PayID server migrations",
   "keywords": [],
   "homepage": "https://github.com/payid-org/migrations#readme",
