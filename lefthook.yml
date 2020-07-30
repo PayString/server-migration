@@ -12,7 +12,7 @@ pre-push:
       run: npm run test
     tsc:
       tags: typescript
-      run: tsc --noEmit --incremental false
+      run: tsc --noEmit --esModuleInterop --incremental false
 
 pre-commit:
   parallel: true

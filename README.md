@@ -1,8 +1,6 @@
 # `@payid-org/server-migration`
 
-![NPM version badge](https://img.shields.io/npm/v/@payid-org/payid-metrics)
-
-A TypeScript library to assist with PayID server data migrations.
+A TypeScript library and cli script to assist with PayID server migrations.
 
 ## Legal
 
