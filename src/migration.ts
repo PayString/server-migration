@@ -86,7 +86,7 @@ export async function getAndPutWithTransform(
       await putAccount(baseUrl, payId, apiVersion, newAccount)
     }
   } catch (error) {
-    if (error.response.data) {
+    if (error.response) {
       logger.error(error.response.data)
     } else {
       logger.error(error)
