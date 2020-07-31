@@ -74,8 +74,8 @@ export async function getAndPutWithTransform(
   apiVersion: string,
   tranformFn: (paymentInfo: PaymentInformation) => PaymentInformation,
 ): Promise<void> {
-  try {
-    for (const payId of payIds) {
+  for (const payId of payIds) {
+    try {
       const oldAccount = await getAccount(baseUrl, payId, apiVersion)
 
       const newAccount = {
@@ -84,12 +84,13 @@ export async function getAndPutWithTransform(
       }
 
       await putAccount(baseUrl, payId, apiVersion, newAccount)
-    }
-  } catch (error) {
-    if (error.response) {
-      logger.error(error.response.data)
-    } else {
-      logger.error(error)
+    } catch (error) {
+      // eslint-disable-next-line max-depth -- TODO(dino): Fix this.
+      if (error.response) {
+        logger.error(error.response.data)
+      } else {
+        logger.error(error)
+      }
     }
   }
 }
