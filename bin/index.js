@@ -49,8 +49,8 @@ const text = fs.readFileSync(options.file, 'utf-8')
 const payIds = text.split('\n').slice(0, -1)
 
 // Map of transforms
-const tranforms = {
-  xAddressToClassic,
+const transforms = {
+  xAddressToClassic: xAddressToClassic,
 }
 
 // Do the find & replace
@@ -58,5 +58,5 @@ void getAndPutWithTransform(
   options.baseUrl,
   payIds,
   options.adminApiVersion,
-  tranforms[options.tranformFunction],
+  transforms[options.transformFunction],
 )
