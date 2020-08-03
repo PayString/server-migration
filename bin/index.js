@@ -8,7 +8,9 @@ const {
 } = require('../build/src/index')
 
 const options = yargs
-  .usage('Usage: -b <baseUrl> -f <file> -a <adminApiVersion>')
+  .usage(
+    'Usage: -f <file> -b <baseUrl> -a <adminApiVersion> -t <transformFunction>',
+  )
   .options({
     f: {
       alias: 'file',
